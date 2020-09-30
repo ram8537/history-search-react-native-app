@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, SafeAreaView, Animated } from "react-native"
+import { StyleSheet, Text, View, FlatList, SafeAreaView, Animated,} from "react-native"
+import * as Haptics from 'expo-haptics';
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import ListItem from './ListItem'
@@ -35,16 +36,16 @@ const DATA = [
 
 
 function RightActions() {
+    Haptics.selectionAsync()
     return (
-        <View style={{ backgroundColor: '#292929', flex:1 }}>
-            <View style={{flexDirection:'row-reverse', alignItems:'center', padding:6}}>
+        <View style={{ backgroundColor: '#292929', flex:1, flexDirection:'column', justifyContent:'center' }}>
+            <View style={{flexDirection:'row-reverse', alignItems:'center'}}>
                 <Icon type='MaterialIcons' name="search" style={{ color: 'white' }} />
                 <Text style={{ color: 'white', paddingRight:3}}>Search</Text>
             </View>
         </View>
     )
 }
-
 
 function List() {
     const renderItem = ({ item }) => (
@@ -61,7 +62,6 @@ function List() {
                 data={DATA}
                 renderItem={renderItem}
                 keyExtractor={item => item.item_number}
-                ItemSeparatorComponent={() => <View style={{ height: 10 }}></View>}
             />
         </SafeAreaView>
     )

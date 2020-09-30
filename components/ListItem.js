@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         flexDirection: 'row',
+        paddingLeft: 10,
+        paddingTop: 5
     },
     container__thumbnail: {
         paddingRight: 6
@@ -34,11 +36,11 @@ const styles = StyleSheet.create({
     title: {
         color: '#FFFFFF',
         fontWeight: '500',
-        fontSize: 19
+        fontSize: 15
     },
     item_number: {
         color: '#FFFFFF',
         fontWeight: '100',
-        fontSize: 15
+        fontSize: 14
     },
 });
