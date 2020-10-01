@@ -1,14 +1,13 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native';
-import FooterComponent from './Footer';
-import ParallaxHeader from './Header';
+import ParallaxHeader from './Page1/Header';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 function Page2() {
     return (
         <View style={styles.container}>
-            <ParallaxHeader />
+          <ParallaxHeader />
         </View>
     )
 }

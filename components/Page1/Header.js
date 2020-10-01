@@ -42,7 +42,7 @@ const renderContent = () => {
           extraScrollHeight={20}
           titleStyle={styles.titleStyle}
           title={title()}
-          backgroundImage={require('./museum.jpg')}
+          backgroundImage={require('./images/museum.jpg')}
           backgroundImageScale={1.2}
           renderContent={List}
           containerStyle={styles.container}
