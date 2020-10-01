@@ -26,7 +26,7 @@ function Page2() {
       <ReactNativeParallaxHeader
         navbarColor="#121212"
         headerMinHeight={HEADER_HEIGHT}
-        headerMaxHeight={230}
+        headerMaxHeight={120}
         extraScrollHeight={20}
         titleStyle={styles.titleStyle}
         title={SearchBar()}

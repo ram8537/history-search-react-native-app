@@ -49,9 +49,9 @@ function RightActions() {
 
 function List() {
     const ScrollItems = DATA.map((item) =>
-    <Swipeable renderRightActions={RightActions}>
+    <Swipeable renderRightActions={RightActions} key={item.item_number}>
     <View style={{ flex: 1, backgroundColor: '#121212' }}>
-    <ListItem key={item.item_number} image_url={item.image_url} title={item.title} item_number={item.item_number} />
+    <ListItem image_url={item.image_url} title={item.title} item_number={item.item_number} />
     </View>
     </Swipeable>
 );

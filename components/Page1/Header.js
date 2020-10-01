@@ -12,7 +12,7 @@ const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
 const title = () => {
   return (
     <View style={styles.body}>
-      <Text style={{ color: 'white', fontSize: 20 }}>National Museum Singapore</Text>
+      {/* <Text style={{ color: 'white', fontSize: 20, }}>National Museum Singapore</Text> */}
     </View>
   );
 };
@@ -27,7 +27,7 @@ const ParallaxHeader = () => {
         extraScrollHeight={20}
         titleStyle={styles.titleStyle}
         title={title()}
-        backgroundImage={require('./images/museum.jpg')}
+        backgroundImage={require('./images/museum2.jpg')}
         backgroundImageScale={1.2}
         renderContent={List}
         containerStyle={styles.container}

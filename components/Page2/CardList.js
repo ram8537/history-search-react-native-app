@@ -24,10 +24,19 @@ const DATA = [
     },
 ]
 
+function parseFlaskResponse(data) {
+    if (data.type=="basic_response") {
+      console.log(data.message)
+    }else if (data.type=="filtered_response"){
+      console.log(data.message)
+    }else if (data.type=="error_response")
+      console.log(data.message)
+  }
+
 export default function CardList() {
     const ScrollItems = DATA.map((item) =>
-        <View style={{ flex: 1, backgroundColor: '#121212' }}>
-        <CardComponent key={item.item_number} confidence_score={item.item_number} text={item.description} />
+        <View style={{ flex: 1, backgroundColor: '#121212' }} key={item.item_number}>
+        <CardComponent confidence_score={item.item_number} text={item.description} />
         </View>
     );
     return (
