@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, SafeAreaView, Animated, } from "react-native"
-import { Icon } from 'native-base'
+import { StyleSheet, Text, View, FlatList, } from "react-native"
+import { ScrollView } from 'react-native-gesture-handler'
 import CardComponent from './Card'
 import SearchBar from './SearchBar'
 
@@ -24,40 +24,15 @@ const DATA = [
     },
 ]
 
-
-
-
-function CardList() {
-    const scrollY = new Animated.Value(0)
-    const diffClamp = Animated.diffClamp(scrollY,0,15)
-    const translateY = diffClamp.interpolate({
-        inputRange: [0, 50],
-        outputRange: [0, -100],
-
-    })
-
-    const renderItem = ({ item }) => (
+export default function CardList() {
+    const ScrollItems = DATA.map((item) =>
         <View style={{ flex: 1, backgroundColor: '#121212' }}>
-            <CardComponent confidence_score={item.item_number} text={item.description} />
+        <CardComponent key={item.item_number} confidence_score={item.item_number} text={item.description} />
         </View>
-    )
-
-    const onScroll = Animated.event(
-        [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-      );
+    );
     return (
         <View style={styles.container__flatlist}>
-            <Animated.View
-            style={{transform:[
-                {translateY:translateY}
-            ]}}>
-                <SearchBar/>
-            </Animated.View>
-            <FlatList
-                data={DATA}
-                renderItem={renderItem}
-                scrollEventThrottle={16}
-                onScroll={onScroll} />
+            {ScrollItems}
         </View>
     )
 }
@@ -69,4 +44,3 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CardList

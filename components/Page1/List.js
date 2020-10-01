@@ -48,21 +48,16 @@ function RightActions() {
 }
 
 function List() {
-    const renderItem = ({ item }) => (
-        <Swipeable renderRightActions={RightActions}>
-            <View style={{ flex: 1, backgroundColor: '#121212' }}>
-                <ListItem image_url={item.image_url} title={item.title} item_number={item.item_number} />
-            </View>
-        </Swipeable>
-    )
-
+    const ScrollItems = DATA.map((item) =>
+    <Swipeable renderRightActions={RightActions}>
+    <View style={{ flex: 1, backgroundColor: '#121212' }}>
+    <ListItem key={item.item_number} image_url={item.image_url} title={item.title} item_number={item.item_number} />
+    </View>
+    </Swipeable>
+);
     return (
         <SafeAreaView style={styles.container__flatlist}>
-            <FlatList
-                data={DATA}
-                renderItem={renderItem}
-                keyExtractor={item => item.item_number}
-            />
+            {ScrollItems}
         </SafeAreaView>
     )
 }

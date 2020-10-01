@@ -9,7 +9,7 @@ function SearchBar() {
             <View style={styles.container}>
                 <TextInput style={styles.textInput}
                     placeholder="Search"
-                    placeholderTextColor="#8F8F8F"
+                    placeholderTextColor="black"
                     keyboardAppearance="dark"
                     clearButtonMode="always"/>
             </View>
@@ -25,10 +25,12 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 5,
         marginHorizontal: 11,
-        backgroundColor: '#292929',
+        backgroundColor: '#1ED760',
         color: 'white',
+        fontWeight:'bold',
         padding: 15,
-        borderRadius: 100,
+        borderRadius: 10,
+        borderColor:'#292929'
     }
 });
 
