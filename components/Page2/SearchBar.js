@@ -5,14 +5,16 @@ import axios from 'axios';
 
 
 function SearchBar() {
-    const [data, setData] = useState([]);
-    const message = {message: 'test'}
+    const [data, setData] = useState();
 
-    const onSubmit = (message) => {
-        axios.post('https://e6b17d856e69.ngrok.io', message)
+    const onSubmit = (userInput) => {
+        const sendFlaskMessage = {message: userInput}
+        axios.post('https://57fc22897579.ngrok.io', sendFlaskMessage)
         .then((response) => setData(response.data))
         .catch((error) => console.error(error))
     };
+
+    console.log(JSON.stringify(data))
     
     return (
             <View style={styles.container}>
@@ -21,7 +23,7 @@ function SearchBar() {
                     placeholderTextColor="black"
                     keyboardAppearance="dark"
                     clearButtonMode="always"
-                    onSubmitEditing={(event) => console.log(event.nativeEvent.text)}
+                    onSubmitEditing={(event) => onSubmit(event.nativeEvent.text)}
                     />
             </View>
     )
