@@ -9,13 +9,6 @@ const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 44 : 20) : 0;
 const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
 
 
-const title = () => {
-  return (
-    <View style={styles.body}>
-      {/* <Text style={{ color: 'white', fontSize: 20, }}>National Museum Singapore</Text> */}
-    </View>
-  );
-};
 
 const ParallaxHeader = () => {
   return (
@@ -26,7 +19,6 @@ const ParallaxHeader = () => {
         headerMaxHeight={230}
         extraScrollHeight={20}
         titleStyle={styles.titleStyle}
-        title={title()}
         backgroundImage={require('./images/museum2.jpg')}
         backgroundImageScale={1.2}
         renderContent={List}

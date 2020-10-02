@@ -1,34 +1,37 @@
-import React, {useEffect, useState}  from 'react'
-import { View, Text, StyleSheet, TextInput, Image,} from "react-native"
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, TextInput, Image, } from "react-native"
 import axios from 'axios';
-
+import {useStateValue} from "../State/StateProvider"
+import {actionTypes} from "../State/reducer"
 
 
 function SearchBar() {
-    const [data, setData] = useState();
+    const [term, dispatch] = useStateValue();
+
     const onSubmit = (userInput) => {
-        const sendFlaskMessage = {message: userInput}
-        axios.post('https://921c16b4ece7.ngrok.io', sendFlaskMessage)
-        .then((response) => setData(response.data))
-        .catch((error) => console.error(error))
-    };
-    console.log(JSON.stringify(data))
-    
+        console.log(userInput);
+        dispatch({
+            type: actionTypes.SET_SEARCH_TERM,
+            term: userInput
+        });
+    }
+
     return (
-            <View style={styles.container}>
-                <TextInput style={styles.textInput}
-                    placeholder="Search"
-                    placeholderTextColor="black"
-                    keyboardAppearance="dark"
-                    clearButtonMode="always"
-                    onSubmitEditing={(event) => onSubmit(event.nativeEvent.text)}
-                    />
-            </View>
+        <View style={styles.container}>
+            <TextInput style={styles.textInput}
+                placeholder="Search"
+                placeholderTextColor="black"
+                keyboardAppearance="dark"
+                clearButtonMode="always"
+                onSubmitEditing={(event) => onSubmit(event.nativeEvent.text)}
+            />
+        </View>
     )
 }
+
 const styles = StyleSheet.create({
-    container:{
-        flexDirection:'row',
+    container: {
+        flexDirection: 'row',
     },
     textInput: {
         flex: 1,
@@ -38,10 +41,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 11,
         backgroundColor: '#1ED760',
         color: 'white',
-        fontWeight:'bold',
+        fontWeight: 'bold',
         padding: 15,
         borderRadius: 10,
-        borderColor:'#292929'
+        borderColor: '#292929'
     }
 });
 

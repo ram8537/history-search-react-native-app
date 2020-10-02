@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { Card, CardItem, Text, Body } from 'native-base';
 
@@ -6,7 +6,7 @@ const confidenceScore = (confidence_score) => {
   if (typeof confidence_score !== 'undefined') {
     return (
       <CardItem header style={styles.card}>
-        <Text style={styles.cardText}>Confidence Level: {confidence_score} </Text>
+        <Text style={styles.cardText}>Confidence Score: {confidence_score} </Text>
       </CardItem>
     )
   }

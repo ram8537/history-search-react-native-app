@@ -1,9 +1,8 @@
-import React from 'react'
-import { StyleSheet, Text, View, FlatList, } from "react-native"
-import { ScrollView } from 'react-native-gesture-handler'
+import React, { useState } from 'react'
+import { ScrollView, StyleSheet, View, Text } from "react-native"
+import { useStateValue } from '../State/StateProvider'
 import CardComponent from './Card'
-import SearchBar from './SearchBar'
-
+import useSearch from './useSearch'
 
 const DATA = [
     {
@@ -27,29 +26,33 @@ const DATA = [
 function parseFlaskResponse(data) {
     if (data.type == "basic_response") {
         console.log(data.message);
-    } else if (data.type == "filtered_response") {
+        return <CardComponent text={data.message} />
+    }
+    else if (data.type == "filtered_response") {
         console.log(data.message);
-    } else if (data.type == "error_response")
-        console.log(data.message)
+        const ScrollItems = data.message.map((item) =>
+            <CardComponent confidence_score={item.confidence_score} text={item.text} />);
+        return (
+            <ScrollView style={styles.container}>
+                {ScrollItems}
+            </ScrollView>
+        )
+    } else (data.type == "error_response")
+    console.log(data.message)
 }
 
-export default function CardList() {
-    const ScrollItems = DATA.map((item) =>
-        <View style={{ flex: 1, backgroundColor: '#121212' }} key={item.item_number}>
-            <CardComponent confidence_score={item.item_number} text={item.description} />
-        </View>
-    );
-    return (
-        <View style={styles.container__flatlist}>
-            {ScrollItems}
-        </View>
-    )
+export default function CardList(data) {
+    try {
+        return (parseFlaskResponse(data))
+    } catch (err) {
+        console.log("problem")
+        return <CardComponent text="try asking a question!" />
+    }
 }
 
 const styles = StyleSheet.create({
-    container__flatlist: {
+    container: {
         flex: 1,
         backgroundColor: '#121212',
     }
 });
-
