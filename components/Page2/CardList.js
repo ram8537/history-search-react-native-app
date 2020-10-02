@@ -25,25 +25,18 @@ const DATA = [
 ]
 
 function parseFlaskResponse(data) {
-    if (data.type=="basic_response") {
-      console.log(data.message)
-    }else if (data.type=="filtered_response"){
-      console.log(data.message)
-    }else if (data.type=="error_response")
-      console.log(data.message)
-  }
-
-//clean the data. format it in an array of objects, each object like this:
-const eachObject = {
-    confidence_score : '0.982',
-    text: 'result text'
+    if (data.type == "basic_response") {
+        console.log(data.message);
+    } else if (data.type == "filtered_response") {
+        console.log(data.message);
+    } else if (data.type == "error_response")
+        console.log(data.message)
 }
-
 
 export default function CardList() {
     const ScrollItems = DATA.map((item) =>
         <View style={{ flex: 1, backgroundColor: '#121212' }} key={item.item_number}>
-        <CardComponent confidence_score={item.item_number} text={item.description} />
+            <CardComponent confidence_score={item.item_number} text={item.description} />
         </View>
     );
     return (

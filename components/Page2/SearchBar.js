@@ -8,7 +8,7 @@ function SearchBar() {
     const [data, setData] = useState();
     const onSubmit = (userInput) => {
         const sendFlaskMessage = {message: userInput}
-        axios.post('https://57fc22897579.ngrok.io', sendFlaskMessage)
+        axios.post('https://921c16b4ece7.ngrok.io', sendFlaskMessage)
         .then((response) => setData(response.data))
         .catch((error) => console.error(error))
     };
