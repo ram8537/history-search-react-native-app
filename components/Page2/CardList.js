@@ -33,6 +33,13 @@ function parseFlaskResponse(data) {
       console.log(data.message)
   }
 
+//clean the data. format it in an array of objects, each object like this:
+const eachObject = {
+    confidence_score : '0.982',
+    text: 'result text'
+}
+
+
 export default function CardList() {
     const ScrollItems = DATA.map((item) =>
         <View style={{ flex: 1, backgroundColor: '#121212' }} key={item.item_number}>
