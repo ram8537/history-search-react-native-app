@@ -69,9 +69,9 @@ export default function List() {
     );
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             {ScrollItems}
-        </SafeAreaView>
+        </View>
     )
 }
 

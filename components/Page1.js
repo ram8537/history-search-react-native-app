@@ -1,16 +1,15 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import ParallaxHeader from './Page1/Header';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ScrollView } from 'react-native-gesture-handler';
 import List from './Page1/List';
+import RNParallax from './Page1/RefactoringParallaxHeader';
 
-function Page2() {
+
+function Page1() {
     return (
         <View style={styles.container}>
-          {/* <ParallaxHeader /> */}
-          <ScrollView><List /></ScrollView>
+          <RNParallax />
         </View>
     )
 }
@@ -19,9 +18,10 @@ function Page2() {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      paddingTop:25,
       backgroundColor: '#121212',
     },
   });
   
 
-export default Page2
+export default Page1
