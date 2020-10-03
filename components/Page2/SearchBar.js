@@ -5,7 +5,7 @@ import {useStateValue} from "../State/StateProvider"
 import {actionTypes} from "../State/reducer"
 
 
-function SearchBar() {
+export default function SearchBar() {
     const [term, dispatch] = useStateValue();
 
     const onSubmit = (userInput) => {
@@ -15,7 +15,7 @@ function SearchBar() {
             term: userInput
         });
     }
-
+//does not actually search yet, only pushes search term to data layer
     return (
         <View style={styles.container}>
             <TextInput style={styles.textInput}
@@ -48,4 +48,3 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SearchBar
