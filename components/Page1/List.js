@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, SafeAreaView, Animated,} from "react-native"
+import { StyleSheet, Text, View, FlatList, SafeAreaView, Animated, } from "react-native"
 import * as Haptics from 'expo-haptics';
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable';
@@ -38,32 +38,37 @@ const DATA = [
 function RightActions() {
     Haptics.selectionAsync()
     return (
-        <View style={{ backgroundColor: '#292929', flex:1, flexDirection:'column', justifyContent:'center' }}>
-            <View style={{flexDirection:'row-reverse', alignItems:'center'}}>
+        <View style={{ backgroundColor: '#292929', flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row-reverse', alignItems: 'center' }}>
                 <Icon type='MaterialIcons' name="search" style={{ color: 'white' }} />
-                <Text style={{ color: 'white', paddingRight:3}}>Search</Text>
+                <Text style={{ color: 'white', paddingRight: 3 }}>Search</Text>
             </View>
         </View>
     )
 }
 
+function RightOpened(item_index){
+    console.log(item_index)
+}
+
 function List() {
     const ScrollItems = DATA.map((item) =>
-    <Swipeable renderRightActions={RightActions} key={item.item_number}>
-    <View style={{ flex: 1, backgroundColor: '#121212' }}>
-    <ListItem image_url={item.image_url} title={item.title} item_number={item.item_number} />
-    </View>
-    </Swipeable>
-);
+        <Swipeable renderRightActions={RightActions} onSwipeableRightOpen={()=> RightOpened(item.item_number)} key={item.item_number}>
+            <View style={{ flex: 1, backgroundColor: '#121212' }}>
+                <ListItem image_url={item.image_url} title={item.title} item_number={item.item_number} />
+            </View>
+        </Swipeable>
+    );
+
     return (
-        <SafeAreaView style={styles.container__flatlist}>
+        <SafeAreaView style={styles.container}>
             {ScrollItems}
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    container__flatlist: {
+    container: {
         flex: 1,
         backgroundColor: '#121212',
     }
