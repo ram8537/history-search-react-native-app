@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, StyleSheet, View, Text } from "react-native"
+import { ScrollView, StyleSheet, View, Text, ActivityIndicator } from "react-native"
 import axios from 'axios';
 import { useStateValue } from '../State/StateProvider'
 import CardComponent from './Card'
-import { Spinner } from 'native-base'
 import search from './useSearch'
 
 const DATA = [
@@ -42,7 +41,7 @@ function parseFlaskResponse(data) {
     } else { console.log(data.message) }
 }
 
-const url = 'https://526664dde57d.ngrok.io'
+const url = 'https://e4acf579a377.ngrok.io'
 
 
 export default function CardList () {
@@ -63,7 +62,7 @@ export default function CardList () {
             .catch((error) => console.error(error))
     }, [term])
 
-    return (loading ? <Spinner color="white" /> : flaskresponse)
+    return (loading ? <ActivityIndicator style={{paddingTop:30}} size="large" color="white"/> : flaskresponse)
 }
 
 const styles = StyleSheet.create({
