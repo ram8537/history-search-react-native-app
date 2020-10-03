@@ -1,8 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Image } from 'react-native';
-import ParallaxHeader from './Page1/Header';
-import { ScrollView } from 'react-native-gesture-handler';
-import List from './Page1/List';
+import { View, StyleSheet} from 'react-native';
 import RNParallax from './Page1/RefactoringParallaxHeader';
 
 

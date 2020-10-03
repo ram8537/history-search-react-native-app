@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { StyleSheet, Text, View, SafeAreaView, } from "react-native"
 import * as Haptics from 'expo-haptics';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { useNavigation } from '@react-navigation/native';
 import { useStateValue } from '../State/StateProvider';
 import ListItem from './ListItem'
 import { Icon } from 'native-base'
@@ -48,9 +49,9 @@ function RightActions() {
     )
 }
 
-
 export default function List() {
     const [item_number, dispatch] = useStateValue();
+    const navigation = useNavigation();
 
     const RightOpened = (chosen_item) => {
         console.log("(list.js) you chose to open", chosen_item)
@@ -62,7 +63,7 @@ export default function List() {
             type:actionTypes.SET_FILTER_STATE,
             filter:true,
         })
-
+        navigation.navigate('Page2')
     }
 
     const ScrollItems = DATA.map((item) =>
@@ -79,6 +80,7 @@ export default function List() {
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     container: {

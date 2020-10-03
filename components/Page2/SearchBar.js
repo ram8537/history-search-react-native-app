@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, Image, Platform } from "react-native"
 import { Button, Icon,} from 'native-base';
 import { useStateValue } from "../State/StateProvider"
