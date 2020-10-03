@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, SafeAreaView, Animated, } from "react-native"
+import { StyleSheet, Text, View, SafeAreaView, } from "react-native"
 import * as Haptics from 'expo-haptics';
-import { PanGestureHandler, State } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { useStateValue } from '../State/StateProvider';
 import ListItem from './ListItem'
 import { Icon } from 'native-base'
+import { actionTypes } from '../State/reducer';
 
 
 const DATA = [
@@ -47,13 +48,20 @@ function RightActions() {
     )
 }
 
-function RightOpened(item_index){
-    console.log(item_index)
-}
 
-function List() {
+export default function List() {
+    const [item_number, dispatch] = useStateValue();
+
+    const RightOpened = (chosen_item) => {
+        console.log(chosen_item)
+        dispatch({
+            type: actionTypes.SET_ITEM_NUMBER,
+            item_number:chosen_item,
+        })
+    }
+
     const ScrollItems = DATA.map((item) =>
-        <Swipeable renderRightActions={RightActions} onSwipeableRightOpen={()=> RightOpened(item.item_number)} key={item.item_number}>
+        <Swipeable renderRightActions={RightActions} onSwipeableRightOpen={() => RightOpened(item.item_number)} key={item.item_number}>
             <View style={{ flex: 1, backgroundColor: '#121212' }}>
                 <ListItem image_url={item.image_url} title={item.title} item_number={item.item_number} />
             </View>
@@ -74,4 +82,3 @@ const styles = StyleSheet.create({
     }
 });
 
-export default List

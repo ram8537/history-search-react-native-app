@@ -9,8 +9,8 @@ import List from './Page1/List';
 function Page2() {
     return (
         <View style={styles.container}>
-          <ParallaxHeader />
-          {/* <ScrollView><List /></ScrollView> */}
+          {/* <ParallaxHeader /> */}
+          <ScrollView><List /></ScrollView>
         </View>
     )
 }
