@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { ScrollView, StyleSheet, View, Text, ActivityIndicator } from "react-native"
 import axios from 'axios';
-import { useStateValue } from '../State/StateProvider'
 import CardComponent from './Card'
 import search from './useSearch'
+import { useStateValue } from '../State/StateProvider';
 
 const DATA = [
     {
@@ -41,20 +41,25 @@ function parseFlaskResponse(data) {
     } else { console.log(data.message) }
 }
 
-const url = 'https://e4acf579a377.ngrok.io'
+const url = ''
 
 
-export default function CardList () {
-    const [{ term }, dispatch] = useStateValue();
+export default function CardList() {
+    const [{ term, item_number, filter }, dispatch] = useStateValue();
+
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState(null);
     const [flaskresponse, setFlaskResponse] = useState(null);
 
     useEffect(() => {
         setLoading(true)
-        console.log("the state of loading is", loading)
         console.log('data has changed')
-        const sendFlaskMessage = { message: term }
+        console.log("(cardlist.js) dereferenced", term, item_number, filter)
+        const flaskMessage = (filter ? (term + " " + item_number) : term)
+
+        console.log("(cardlist.js) flask message is:", flaskMessage)
+        const sendFlaskMessage = { message: "hi" }
+
 
         axios.post(url, sendFlaskMessage)
             .then((response) => setFlaskResponse(parseFlaskResponse(response.data)))
@@ -62,7 +67,7 @@ export default function CardList () {
             .catch((error) => console.error(error))
     }, [term])
 
-    return (loading ? <ActivityIndicator style={{paddingTop:30}} size="large" color="white"/> : flaskresponse)
+    return (loading ? <ActivityIndicator style={{ paddingTop: 30 }} size="large" color="white" /> : flaskresponse)
 }
 
 const styles = StyleSheet.create({

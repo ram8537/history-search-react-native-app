@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TextInput, Image, Platform } from "react-native"
-import axios from 'axios';
 import { Button, Icon,} from 'native-base';
 import { useStateValue } from "../State/StateProvider"
 import { actionTypes } from "../State/reducer"
@@ -11,9 +10,8 @@ export default function SearchBar() {
     const [term, dispatch] = useStateValue();
     const [userInput, setUserInput] = useState(null)
 
-
     const onSubmit = (userInput) => {
-        console.log(userInput);
+        console.log("(SearchBar.js) the user input being pushed to data layer is:",userInput);
         dispatch({
             type: actionTypes.SET_SEARCH_TERM,
             term: userInput
@@ -27,7 +25,7 @@ export default function SearchBar() {
                 placeholderTextColor="black"
                 keyboardAppearance="dark"
                 clearButtonMode="always"
-                onEndEditing={(e) => setUserInput(e.nativeEvent.text)}
+                onEndEditing={(e) => setUserInput (e.nativeEvent.text)}
             />
             </View>
 

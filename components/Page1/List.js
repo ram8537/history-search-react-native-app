@@ -53,11 +53,16 @@ export default function List() {
     const [item_number, dispatch] = useStateValue();
 
     const RightOpened = (chosen_item) => {
-        console.log(chosen_item)
+        console.log("(list.js) you chose to open", chosen_item)
         dispatch({
             type: actionTypes.SET_ITEM_NUMBER,
             item_number:chosen_item,
         })
+        dispatch({
+            type:actionTypes.SET_FILTER_STATE,
+            filter:true,
+        })
+
     }
 
     const ScrollItems = DATA.map((item) =>
