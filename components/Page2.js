@@ -5,6 +5,7 @@ import SearchBar from './Page2/SearchBar';
 import useSearch from './Page2/useSearch';
 import { useStateValue } from './State/StateProvider';
 
+
 // function getSearchResult(){
 //   try {
 //     const [{ term }, dispatch] = useStateValue();
@@ -16,11 +17,15 @@ import { useStateValue } from './State/StateProvider';
 // }
 
 function Page2() {
+  const [term, dispatch] = useStateValue();
+  (term ? console.log(term) : console.log('no term'))
+
   return (
       <View style={styles.container}>
         <SearchBar />
         {/* {loading ? <LoadingSpinner /> : <ResultsTable results={data} />} */}
         {/* <CardList data={data} /> */}
+        {term ? <CardList data={term}/> : console.log ('no term')}
       </View>
   )
 }

@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, StyleSheet, View, Text } from "react-native"
+import axios from 'axios';
 import { useStateValue } from '../State/StateProvider'
 import CardComponent from './Card'
-import useSearch from './useSearch'
+import { Spinner } from 'native-base'
+import search from './useSearch'
 
 const DATA = [
     {
@@ -25,11 +27,11 @@ const DATA = [
 
 function parseFlaskResponse(data) {
     if (data.type == "basic_response") {
-        console.log(data.message);
+        console.log("sending basic response")
         return <CardComponent text={data.message} />
     }
     else if (data.type == "filtered_response") {
-        console.log(data.message);
+        console.log("sending filtered response")
         const ScrollItems = data.message.map((item) =>
             <CardComponent confidence_score={item.confidence_score} text={item.text} />);
         return (
@@ -37,17 +39,31 @@ function parseFlaskResponse(data) {
                 {ScrollItems}
             </ScrollView>
         )
-    } else (data.type == "error_response")
-    console.log(data.message)
+    } else { console.log(data.message) }
 }
 
-export default function CardList(data) {
-    try {
-        return (parseFlaskResponse(data))
-    } catch (err) {
-        console.log("problem")
-        return <CardComponent text="try asking a question!" />
-    }
+const url = 'https://526664dde57d.ngrok.io'
+
+
+export default function CardList () {
+    const [{ term }, dispatch] = useStateValue();
+    const [loading, setLoading] = useState(true)
+    const [data, setData] = useState(null);
+    const [flaskresponse, setFlaskResponse] = useState(null);
+
+    useEffect(() => {
+        setLoading(true)
+        console.log("the state of loading is", loading)
+        console.log('data has changed')
+        const sendFlaskMessage = { message: term }
+
+        axios.post(url, sendFlaskMessage)
+            .then((response) => setFlaskResponse(parseFlaskResponse(response.data)))
+            .then(() => setLoading(false))
+            .catch((error) => console.error(error))
+    }, [term])
+
+    return (loading ? <Spinner color="white" /> : flaskresponse)
 }
 
 const styles = StyleSheet.create({

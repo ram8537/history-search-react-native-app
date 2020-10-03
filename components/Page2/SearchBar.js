@@ -15,7 +15,6 @@ export default function SearchBar() {
             term: userInput
         });
     }
-//does not actually search yet, only pushes search term to data layer
     return (
         <View style={styles.container}>
             <TextInput style={styles.textInput}
