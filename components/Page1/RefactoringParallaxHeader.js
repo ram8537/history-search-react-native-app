@@ -245,10 +245,7 @@ function RNParallax() {
                         opacity: titleOpacity,
                     },
                 ]}>
-                {typeof title === 'string' && (
-                    <Text style={[styles.headerText, styles.titleStyle]}>{title}</Text>
-                )}
-                {typeof title !== 'string' && title}
+                    <Text style={[styles.headerText, styles.titleStyle]}>National Museum Singapore</Text>
             </Animated.View>
         );
     }
@@ -267,6 +264,7 @@ function RNParallax() {
             </Animated.View>
         );
     }
+
 
     const renderScrollView = () => {
         return (
@@ -287,12 +285,14 @@ function RNParallax() {
             </Animated.ScrollView>
         )
     }
+    
     return (
         <View style={[styles.container, styles.containerStyle]}>
             <StatusBar />
             {renderScrollView()}
             {renderNavbarBackground()}
             {renderHeaderBackground()}
+            {renderHeaderTitle()}
             {renderHeaderForeground()}
         </View>
     )

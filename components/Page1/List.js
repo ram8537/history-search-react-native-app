@@ -8,7 +8,6 @@ import ListItem from './ListItem'
 import { Icon } from 'native-base'
 import { actionTypes } from '../State/reducer';
 
-
 const DATA = [
     {
         item_number: '1001',
@@ -33,6 +32,48 @@ const DATA = [
         title: "Singapura 1299-1818",
         image_url: "https://cloud-object-storage-zn-cos-standard-nlt.s3.jp-tok.cloud-object-storage.appdomain.cloud/1004_statue_sangnilaautama.jpg",
         description: "Where does Singapore's history begin?",
+    },
+    {
+        item_number: '1005',
+        title: "Orang Laut",
+        image_url: "https://cloud-object-storage-zn-cos-standard-nlt.s3.jp-tok.cloud-object-storage.appdomain.cloud/1005_oranglaut.jpg",
+        description: "The Orang Laut ('sea people') in Malay have lived in Singapore since at least the 14th century. Some communities survived up to the 1960s in the estuaries of mainland Singapore and it's offshore islands.",
+    },
+    {
+        item_number: '1006',
+        title: "Singapore's maritime lifeline",
+        image_url: "https://cloud-object-storage-zn-cos-standard-nlt.s3.jp-tok.cloud-object-storage.appdomain.cloud/1006_singaporeriver.jpg",
+        description: "Singapore lies at the confluence of the seasonal monsoons, which the people in the Malay Archipelago relied on to travel from island to island.",
+    },
+    {
+        item_number: '1008',
+        title: "Porcelain jars",
+        image_url: "https://cloud-object-storage-zn-cos-standard-nlt.s3.jp-tok.cloud-object-storage.appdomain.cloud/1008_porcelain.jpg",
+        description: "Stoneware and porcelain from the 14th century",
+    },
+    {
+        item_number: '1009',
+        title: "Spongebob",
+        image_url: "https://cloud-object-storage-zn-cos-standard-nlt.s3.jp-tok.cloud-object-storage.appdomain.cloud/spongebob1.jpg",
+        description: "Who lives in a pineapple under the sea?",
+    },
+    {
+        item_number: '1010',
+        title: "Patrick",
+        image_url: "https://cloud-object-storage-zn-cos-standard-nlt.s3.jp-tok.cloud-object-storage.appdomain.cloud/patrick.jpeg",
+        description: " Maybe a story will cheer you up...Once upon a time there was an ugly barnacle. It was so ugly that everyone died. The end",
+    },
+    {
+        item_number: '1011',
+        title: "Mr Krabs",
+        image_url: "https://cloud-object-storage-zn-cos-standard-nlt.s3.jp-tok.cloud-object-storage.appdomain.cloud/krabs.jpg",
+        description: "I can think of ten good reasons to never let go of a dime, boy.",
+    },
+    {
+        item_number: '1012',
+        title: "Squidward",
+        image_url: "https://cloud-object-storage-zn-cos-standard-nlt.s3.jp-tok.cloud-object-storage.appdomain.cloud/squidward.png",
+        description: "Wake me up when I care",
     },
 ]
 

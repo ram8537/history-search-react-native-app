@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { Icon, Button } from 'native-base';
 import * as Haptics from 'expo-haptics';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function NoItemSelected() {
     const navigation = useNavigation();
     return (
+        <ScrollView styles={{backgroundColor:'#121212'}}>
         <View style={styles.container}>
 
             <Text style={styles.text}>You haven't swiped on an item yet.</Text>
@@ -19,6 +20,7 @@ export default function NoItemSelected() {
                 <Icon type="MaterialCommunityIcons" name='ship-wheel' style={styles.icon} />
             </Button>
         </View>
+        </ScrollView>
     )
 }
 
