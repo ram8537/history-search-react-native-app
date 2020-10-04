@@ -184,7 +184,7 @@ function RNParallax() {
                         transform: [{ translateY: imageTranslate }, { scale: imageScale }],
                     },
                 ]}
-                source={require('/Users/ramprakash/Documents/app/ok/components/Page1/images/museum2.jpg')}
+                source={require('./images/museum2.jpg')}
             />
         )
     }

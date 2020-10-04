@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, SafeAreaView, } from "react-native"
 import * as Haptics from 'expo-haptics';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
@@ -42,32 +42,52 @@ function RightActions() {
     return (
         <View style={{ backgroundColor: '#292929', flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
             <View style={{ flexDirection: 'row-reverse', alignItems: 'center' }}>
-                <Icon type='MaterialIcons' name="search" style={{ color: 'white' }} />
+                <Icon type='MaterialCommunityIcons' name="ship-wheel" style={{ color: 'white' }} />
                 <Text style={{ color: 'white', paddingRight: 3 }}>Search</Text>
+            </View>
+        </View>
+    )
+}
+function LeftActions() {
+    Haptics.selectionAsync()
+    return (
+        <View style={{ backgroundColor: '#1ED760', flex: 1, flexDirection: 'column-reverse', justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Icon type='MaterialCommunityIcons' name="anchor" style={{ color: 'white' }} />
+                <Text style={{ color: 'black', paddingRight: 3, fontWeight:"700" }}>Details</Text>
             </View>
         </View>
     )
 }
 
 export default function List() {
-    const [item_number, dispatch] = useStateValue();
-    const navigation = useNavigation();
+    const [{ item_number, filter}, dispatch] = useStateValue();
 
-    const RightOpened = (chosen_item) => {
-        console.log("(list.js) you chose to open", chosen_item)
+    const navigation = useNavigation();
+    const dispatchActions = ({ item_number, title, image_url, description }) => {
         dispatch({
             type: actionTypes.SET_ITEM_NUMBER,
-            item_number:chosen_item,
+            item_number: item_number,
         })
         dispatch({
-            type:actionTypes.SET_FILTER_STATE,
-            filter:true,
+            type: actionTypes.SET_FILTER_STATE,
+            filter: true,
         })
+    }
+    const openRight = (item) => {
+        console.log("(listjs) swipe open right")
         navigation.navigate('Page2')
+        dispatchActions(item)
+    }
+
+    const openLeft = (item) => {
+        console.log("(listjs) swipe open left")
+        navigation.navigate('Page3')
+        dispatchActions(item)
     }
 
     const ScrollItems = DATA.map((item) =>
-        <Swipeable renderRightActions={RightActions} onSwipeableRightOpen={() => RightOpened(item.item_number)} key={item.item_number}>
+        <Swipeable renderRightActions={RightActions} onSwipeableRightOpen={() => openRight(item)} key={item.item_number} renderLeftActions={LeftActions} onSwipeableLeftOpen={()=>openLeft(item)}>
             <View style={{ flex: 1, backgroundColor: '#121212' }}>
                 <ListItem image_url={item.image_url} title={item.title} item_number={item.item_number} />
             </View>

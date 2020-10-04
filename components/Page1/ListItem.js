@@ -10,7 +10,7 @@ export default function ListItem({ image_url, title, item_number }) {
     return (
             <View style={styles.container}>
                 <View style={styles.container__thumbnail}>
-                    {/* <Thumbnail square medium source={{ uri: image_url }} /> */}
+                    <Thumbnail square medium source={{ uri: image_url }} />
                 </View>
                 <View style={styles.container__text} >
                     <Text style={styles.title}>{title}</Text>

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './components/Tabs';
 import reducer, {initialState} from './components/State/reducer'
 import {StateProvider} from './components/State/StateProvider'
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
 
