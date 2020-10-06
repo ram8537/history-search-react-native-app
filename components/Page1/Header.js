@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
-import List from './List'
+import List from './List';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const IS_IPHONE_X = SCREEN_HEIGHT === 812 || SCREEN_HEIGHT === 896;

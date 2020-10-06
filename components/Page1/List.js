@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, SafeAreaView, } from "react-native"
-import * as Haptics from 'expo-haptics';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { useNavigation } from '@react-navigation/native';
-import { useStateValue } from '../State/StateProvider';
-import ListItem from './ListItem'
-import { Icon } from 'native-base'
+import * as Haptics from 'expo-haptics';
+import { Icon } from 'native-base';
+import React from 'react';
+import { StyleSheet, Text, View } from "react-native";
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { actionTypes } from '../State/reducer';
+import { useStateValue } from '../State/StateProvider';
+import ListItem from './ListItem';
 
 const DATA = [
     {

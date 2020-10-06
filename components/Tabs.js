@@ -1,5 +1,5 @@
-import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Page1 from './Page1';
 import Page2 from './Page2';

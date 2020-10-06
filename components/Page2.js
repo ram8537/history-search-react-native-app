@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import CardList from './Page2/CardList';
+import Filter from './Page2/Filter';
+import NoSearchTerms from './Page2/NoSearchTerms';
 import SearchBar from './Page2/SearchBar';
 import { useStateValue } from './State/StateProvider';
-import Filter from './Page2/Filter'
-import { ScrollView } from 'react-native-gesture-handler';
-import NoSearchTerms from './Page2/NoSearchTerms';
 
 
 

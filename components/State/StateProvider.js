@@ -1,5 +1,4 @@
-import React, {createContext, useContext, useReducer, useState} from 'react';
-import { initialState } from './reducer';
+import React, { createContext, useContext, useReducer } from 'react';
 
 //creates the 'data layer'
 export const StateContext = createContext();

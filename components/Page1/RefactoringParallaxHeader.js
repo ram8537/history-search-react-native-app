@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, Platform, Animated, Text, View, Dimensions, StatusBar, } from 'react-native';
+import React from 'react';
+import { Animated, Dimensions, Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
 import List from './List';
 
 

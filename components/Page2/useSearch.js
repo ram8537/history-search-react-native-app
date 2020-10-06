@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import axios from 'axios';
+import { useState } from 'react';
 
 const url = 'https://526664dde57d.ngrok.io'
 function useSearch(term) {

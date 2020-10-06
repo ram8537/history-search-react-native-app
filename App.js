@@ -1,5 +1,4 @@
-import 'react-native-gesture-handler';
-import React, {createContext, useContext, useReducer} from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './components/Tabs';
 import reducer, {initialState} from './components/State/reducer'

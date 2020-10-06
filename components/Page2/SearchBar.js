@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, TextInput, Image, Platform } from "react-native"
-import { Button, Icon,} from 'native-base';
-import { useStateValue } from "../State/StateProvider"
-import { actionTypes } from "../State/reducer"
 import * as Haptics from 'expo-haptics';
+import { Button, Icon } from 'native-base';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, View } from "react-native";
+import { actionTypes } from "../State/reducer";
+import { useStateValue } from "../State/StateProvider";
 
 
 export default function SearchBar() {

@@ -1,8 +1,8 @@
-import React from 'react'
-import { View, StyleSheet, Text } from 'react-native';
-import { Badge, Icon, } from "native-base"
-import { useStateValue } from '../State/StateProvider';
+import { Badge, Icon } from "native-base";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { actionTypes } from '../State/reducer';
+import { useStateValue } from '../State/StateProvider';
 
 
 export default function Filter() {

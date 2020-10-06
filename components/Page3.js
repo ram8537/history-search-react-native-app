@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
-import { View, StyleSheet } from "react-native"
-import { ScrollView } from 'react-native-gesture-handler';
-import DetailViewCard from './Page3/DetailViewCard'
+import React from 'react';
+import { StyleSheet, View } from "react-native";
+import DetailViewCard from './Page3/DetailViewCard';
 import NoItemSelected from './Page3/NoItemSelected';
 import { useStateValue } from './State/StateProvider';
 

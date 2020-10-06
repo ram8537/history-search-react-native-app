@@ -1,6 +1,6 @@
+import { Body, Card, CardItem, Text } from 'native-base';
 import React from 'react';
-import { Image, View, StyleSheet } from 'react-native';
-import { Card, CardItem, Text, Body } from 'native-base';
+import { StyleSheet, View } from 'react-native';
 
 const confidenceScore = (confidence_score) => {
   if (typeof confidence_score !== 'undefined') {

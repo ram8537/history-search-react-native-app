@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { ScrollView, StyleSheet, View, Text, ActivityIndicator } from "react-native"
 import axios from 'axios';
-import CardComponent from './Card'
-import search from './useSearch'
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { useStateValue } from '../State/StateProvider';
+import CardComponent from './Card';
 
 function parseFlaskResponse(data) {
     if (data.type == "basic_response") {
