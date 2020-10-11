@@ -14,6 +14,8 @@ export default function FaqPopUp() {
         axios.get(`https://history-assistant-slack.ue.r.appspot.com/api/faq/${item_number}`)
             .then((response) => { setData(response.data); console.log("(FaqPopUp.js) useEffect to get FAQs from Django"); })
             .catch((error) => { console.log(error) })
+
+        
     }, [item_number])
 
     //create one modal
