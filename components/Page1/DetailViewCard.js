@@ -1,13 +1,9 @@
-import React, { useEffect, ActivityIndicator } from 'react';
-import { Image, StyleSheet, View, Text } from 'react-native';
-import { Container, Content, Card, CardItem, Left, Body, Button, Icon } from 'native-base';
-import * as Haptics from 'expo-haptics';
-import { useNavigation } from '@react-navigation/native';
-import { useStateValue } from '../State/StateProvider';
+import { Body, Card, CardItem, Container, Content, Left } from 'native-base';
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 
-export default function DetailViewCard({ item_number, item }) {
-  const navigation = useNavigation();
+export default function DetailViewCard({ item }) {
   return (
     <Container style={styles.container}>
       <Content>
@@ -16,7 +12,7 @@ export default function DetailViewCard({ item_number, item }) {
             <Left>
               <Body>
                 <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.item_number}>{item_number}</Text>
+                <Text style={styles.item_number}>{item.item_number}</Text>
               </Body>
             </Left>
           </CardItem>
@@ -30,14 +26,6 @@ export default function DetailViewCard({ item_number, item }) {
             </Body>
           </CardItem>
         </Card>
-
-        <CardItem style={{ backgroundColor: '#121212', alignItems: "center" }}>
-          <Button style={styles.button} onPress={() => { Haptics.selectionAsync(); navigation.navigate('Page2') }}>
-            <Text style={{ fontWeight: '700' }}>Try a search</Text>
-            <Icon type="MaterialCommunityIcons" name='ship-wheel' />
-          </Button>
-        </CardItem>
-
       </Content>
     </Container>
   );
@@ -45,6 +33,7 @@ export default function DetailViewCard({ item_number, item }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#121212',
+    flex: 1,
   },
   card: {
     flex: 0,

@@ -3,7 +3,6 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Page1 from './Page1';
 import Page2 from './Page2';
-import Page3 from './Page3';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,16 +21,6 @@ function Tabs() {
         }
       }}
     >
-      <Tab.Screen
-        name="Page3"
-        component={Page3}
-        options={{
-          tabBarLabel: 'Details',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="anchor" color={color} size={size}/>
-          ),
-        }}
-      />
       <Tab.Screen
         name="Page1"
         component={Page1}

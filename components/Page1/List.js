@@ -3,8 +3,9 @@ import axios from 'axios';
 import * as Haptics from 'expo-haptics';
 import { Icon } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Modal, StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import DetailViewCard from './DetailViewCard';
 import { actionTypes } from '../State/reducer';
 import { useStateValue } from '../State/StateProvider';
 import ListItem from './ListItem';
@@ -20,25 +21,16 @@ function RightActions() {
         </View>
     )
 }
-function LeftActions() {
-    Haptics.selectionAsync()
-    return (
-        <View style={{ backgroundColor: '#1ED760', flex: 1, flexDirection: 'column-reverse', justifyContent: 'center' }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Icon type='MaterialCommunityIcons' name="anchor" style={{ color: 'white' }} />
-                <Text style={{ color: 'black', paddingRight: 3, fontWeight: "700" }}>Details</Text>
-            </View>
-        </View>
-    )
-}
 
 export default function List() {
     const [{ item_number, filter }, dispatch] = useStateValue();
     const [DATA, setData] = useState(null)
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalItem, setModalItem] = useState()
 
     useEffect(() => {
         axios.get('https://history-assistant-slack.ue.r.appspot.com/api/')
-            .then((response) => { setData(response.data); console.log("(list.js) useEffect to get data from Django"); })
+            .then((response) => { setData(response.data); console.log("(list.js) useEffect to get listview from Django"); })
             .catch((error) => { console.log(error) })
     }, [])
 
@@ -54,35 +46,59 @@ export default function List() {
     }
 
     const navigation = useNavigation();
-
     const openRight = (item) => {
         console.log("(listjs) swipe open right")
         navigation.navigate('Page2')
         dispatchActions(item)
     }
 
-    const openLeft = (item) => {
-        console.log("(listjs) swipe open left")
-        navigation.navigate('Page3')
-        dispatchActions(item)
+
+    const renderModal = () => {
+        console.log("(modal item is)", modalItem)
+        return (
+            <Modal animationType="slide" presentationStyle="overFullScreen" transparent={true} visible={modalVisible} onRequestClose={() => { Alert.alert("Modal has been closed."); }}>
+                <View style={styles.centeredView}>
+
+
+                    <DetailViewCard item={modalItem} />
+                    <TouchableHighlight
+                        style={{ backgroundColor: '#121212', elevation: 2, alignItems: "center" }}
+                        onPress={() => {
+                            setModalVisible(!modalVisible);
+                        }}
+                    >
+                        <View style={{ flexDirection: "row", marginTop: 40 }}>
+                            <Text style={{ color: 'white', fontSize: 17 }}>Close</Text>
+                            <Icon type="MaterialCommunityIcons" name='chevron-triple-down' style={{ color: '#F780A9', fontSize: 25 }} />
+                        </View>
+                    </TouchableHighlight>
+
+
+                </View>
+            </Modal>
+        )
     }
 
     const ScrollItems = () => {
         if (DATA) {
             return (DATA.map((item) =>
-                <Swipeable renderRightActions={RightActions} onSwipeableRightOpen={() => openRight(item)} key={item.item_number} renderLeftActions={LeftActions} onSwipeableLeftOpen={() => openLeft(item)}>
-                    <View style={{ flex: 1, backgroundColor: '#121212' }}>
+                <Swipeable renderRightActions={RightActions} onSwipeableRightOpen={() => openRight(item)} key={item.item_number} >
+                    <View style={{ flex: 1, backgroundColor: '#121212', flexDirection: "row", alignItems: "center" }}>
                         <ListItem image_url={item.image} title={item.title} item_number={item.item_number} />
+                        <TouchableHighlight onPress={() => {setModalVisible(true); setModalItem(item) }}>
+                            <Icon type="MaterialCommunityIcons" name='anchor' style={{ color: '#F780A9', fontSize: 25, paddingRight: 4, }} />
+                        </TouchableHighlight>
                     </View>
                 </Swipeable>
             ))
         }
-        else {return(<ActivityIndicator style={{ paddingTop: 30 }} size="large" color="white" />)}
+        else { return (<ActivityIndicator style={{ paddingTop: 30 }} size="large" color="white" />) }
     }
 
     return (
         <View style={styles.container}>
             {ScrollItems()}
+            {renderModal()}
         </View>
     )
 }
@@ -91,6 +107,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#121212',
-    }
+    },
+    centeredView: {
+        flex: 1,
+    },
+
 });
 

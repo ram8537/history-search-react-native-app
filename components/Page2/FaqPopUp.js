@@ -15,7 +15,7 @@ export default function FaqPopUp() {
             .then((response) => { setData(response.data); console.log("(FaqPopUp.js) useEffect to get FAQs from Django"); })
             .catch((error) => { console.log(error) })
 
-        
+
     }, [item_number])
 
     const modal = () => {
@@ -29,21 +29,19 @@ export default function FaqPopUp() {
                     Alert.alert("Modal has been closed.");
                 }}
             >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>{modalAnswer}</Text>
-                        <TouchableHighlight
-                            style={styles.closeButton}
-                            onPress={() => {
-                                setModalVisible(!modalVisible);
-                            }}
-                        >   
-                            <View style={{flexDirection:"row", marginTop:40}}>
-                            <Text style={{color:'white',}}>Close</Text>
-                            <Icon type="MaterialCommunityIcons" name='chevron-triple-down' style={{ color: '#F780A9', fontSize:25 }} />
-                            </View> 
-                        </TouchableHighlight>
-                    </View>
+                <View style={styles.modalView}>
+                    <Text style={styles.modalText}>{modalAnswer}</Text>
+                    <TouchableHighlight
+                        style={{ backgroundColor: '#292929', elevation: 2, alignItems: "center" }}
+                        onPress={() => {
+                            setModalVisible(!modalVisible);
+                        }}
+                    >
+                        <View style={{ flexDirection: "row", marginTop: 40 }}>
+                            <Text style={{ color: 'white', alignItems:"flex-end" }}>Close</Text>
+                            <Icon type="MaterialCommunityIcons" name='chevron-triple-down' style={{ color: '#F780A9', fontSize: 25 }} />
+                        </View>
+                    </TouchableHighlight>
                 </View>
             </Modal>
         )
@@ -53,7 +51,7 @@ export default function FaqPopUp() {
     const FAQs = () => {
         if (DATA) {
             return (DATA.map((item) =>
-                <View style={styles.centeredView} key={item.answer}>
+                <View style={styles.faq} key={item.answer}>
                     <TouchableHighlight
                         style={styles.openButton}
                         onPress={() => {
@@ -86,13 +84,18 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 22,
     },
+    faq: {
+        alignItems:"center",
+        marginTop:20,
+    },
     modalView: {
-        margin: 20,
-        marginTop:200,
         backgroundColor: "#292929",
-        borderRadius: 20,
-        paddingTop:20,
-        paddingHorizontal:20,
+        marginTop:400,
+        margin:20,
+        padding:25,
+        borderRadius:20,
+        paddingTop: 20,
+        paddingHorizontal: 20,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -109,11 +112,6 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 2,
     },
-    closeButton: {
-        backgroundColor: "#292929",
-        elevation: 2,
-    },
-
     textStyle: {
         color: "white",
         fontWeight: "bold",
@@ -122,7 +120,8 @@ const styles = StyleSheet.create({
     modalText: {
         color: 'white',
         marginBottom: 15,
-        fontSize:16,
+        marginTop:20,
+        fontSize: 16,
     }
 });
 
