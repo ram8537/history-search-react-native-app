@@ -54,7 +54,6 @@ export default function List() {
 
 
     const renderModal = () => {
-        console.log("(modal item is)", modalItem)
         return (
             <Modal animationType="slide" presentationStyle="overFullScreen" transparent={true} visible={modalVisible} onRequestClose={() => { Alert.alert("Modal has been closed."); }}>
                 <View style={styles.centeredView}>

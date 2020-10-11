@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from "react";
-import { Alert, Modal, StyleSheet, Text, TouchableHighlight, View, ActivityIndicator } from "react-native";
 import { Icon } from 'native-base';
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Alert, Modal, StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { ScrollView } from 'react-native-gesture-handler';
 import { useStateValue } from '../State/StateProvider';
 
 export default function FaqPopUp() {
@@ -30,18 +31,20 @@ export default function FaqPopUp() {
                 }}
             >
                 <View style={styles.modalView}>
-                    <Text style={styles.modalText}>{modalAnswer}</Text>
-                    <TouchableHighlight
-                        style={{ backgroundColor: '#292929', elevation: 2, alignItems: "center" }}
-                        onPress={() => {
-                            setModalVisible(!modalVisible);
-                        }}
-                    >
-                        <View style={{ flexDirection: "row", marginTop: 40 }}>
-                            <Text style={{ color: 'white', alignItems:"flex-end" }}>Close</Text>
-                            <Icon type="MaterialCommunityIcons" name='chevron-triple-down' style={{ color: '#F780A9', fontSize: 25 }} />
-                        </View>
-                    </TouchableHighlight>
+                    <ScrollView>
+                        <Text style={styles.modalText}>{modalAnswer}</Text>
+                        <TouchableHighlight
+                            style={{ backgroundColor: '#292929', elevation: 2, alignItems: "center" }}
+                            onPress={() => {
+                                setModalVisible(!modalVisible);
+                            }}
+                        >
+                            <View style={{ flexDirection: "row", marginTop: 40 }}>
+                                <Text style={{ color: 'white', alignItems: "flex-end" }}>Close</Text>
+                                <Icon type="MaterialCommunityIcons" name='chevron-triple-down' style={{ color: '#F780A9', fontSize: 25 }} />
+                            </View>
+                        </TouchableHighlight>
+                    </ScrollView>
                 </View>
             </Modal>
         )
@@ -85,15 +88,15 @@ const styles = StyleSheet.create({
         marginTop: 22,
     },
     faq: {
-        alignItems:"center",
-        marginTop:20,
+        alignItems: "center",
+        marginTop: 20,
     },
     modalView: {
         backgroundColor: "#292929",
-        marginTop:400,
-        margin:20,
-        padding:25,
-        borderRadius:20,
+        marginTop: 125,
+        marginHorizontal: 20,
+        padding: 25,
+        borderRadius: 20,
         paddingTop: 20,
         paddingHorizontal: 20,
         alignItems: "center",
@@ -120,7 +123,7 @@ const styles = StyleSheet.create({
     modalText: {
         color: 'white',
         marginBottom: 15,
-        marginTop:20,
+        marginTop: 20,
         fontSize: 16,
     }
 });
