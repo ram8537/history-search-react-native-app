@@ -18,11 +18,11 @@ export default function FaqPopUp() {
         
     }, [item_number])
 
-    //create one modal
     const modal = () => {
         return (
             <Modal
                 animationType="slide"
+                presentationStyle="overFullScreen"
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
@@ -33,12 +33,15 @@ export default function FaqPopUp() {
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>{modalAnswer}</Text>
                         <TouchableHighlight
-                            style={{ ...styles.openButton, backgroundColor: "#1ED760" }}
+                            style={styles.closeButton}
                             onPress={() => {
                                 setModalVisible(!modalVisible);
                             }}
-                        >
-                            <Icon type="MaterialCommunityIcons" name='arrow-down' style={{ color: 'white' }} />
+                        >   
+                            <View style={{flexDirection:"row", marginTop:40}}>
+                            <Text style={{color:'white',}}>Close</Text>
+                            <Icon type="MaterialCommunityIcons" name='chevron-triple-down' style={{ color: '#F780A9', fontSize:25 }} />
+                            </View> 
                         </TouchableHighlight>
                     </View>
                 </View>
@@ -46,7 +49,7 @@ export default function FaqPopUp() {
         )
     }
 
-
+    //not visible
     const FAQs = () => {
         if (DATA) {
             return (DATA.map((item) =>
@@ -69,7 +72,7 @@ export default function FaqPopUp() {
 
     return (
         <View style={styles.centeredView}>
-            <Text style={{color:'white', fontSize:20,fontWeight:'600'}}>Frequently asked questions</Text>
+            <Text style={{ color: 'white', fontSize: 20, fontWeight: '600' }}>Frequently asked questions</Text>
             {FAQs()}
             {modal()}
         </View>
@@ -81,13 +84,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 22
+        marginTop: 22,
     },
     modalView: {
         margin: 20,
+        marginTop:200,
         backgroundColor: "#292929",
         borderRadius: 20,
-        padding: 35,
+        paddingTop:20,
+        paddingHorizontal:20,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -104,14 +109,20 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 2,
     },
+    closeButton: {
+        backgroundColor: "#292929",
+        elevation: 2,
+    },
+
     textStyle: {
         color: "white",
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
     },
     modalText: {
         color: 'white',
         marginBottom: 15,
+        fontSize:16,
     }
 });
 
