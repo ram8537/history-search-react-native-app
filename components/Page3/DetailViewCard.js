@@ -24,7 +24,7 @@ export default function DetailViewCard({ item_number, item }) {
           <CardItem style={styles.cardItem}>
             <Body>
               <View >
-                <Image source={{ uri: item.image_url }} resizeMethod={"scale"} resizeMode={'contain'} style={{ height: 250, width: 360, flex: 0 }} defaultSource={require("./images/loading_gif.gif")} />
+                <Image source={{ uri: item.image }} resizeMethod={"scale"} resizeMode={'contain'} style={{ height: 250, width: 360, flex: 0 }} defaultSource={require("./images/loading_gif.gif")} />
               </View>
               <Text style={styles.details}>{item.description}</Text>
             </Body>

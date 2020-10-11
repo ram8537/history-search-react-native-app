@@ -24,7 +24,6 @@ function parseFlaskResponse(data) {
     }
 }
 
-const url = 'https://history-assistant-slack.ue.r.appspot.com'
 
 
 export default function CardList() {
@@ -36,13 +35,14 @@ export default function CardList() {
 
     useEffect(() => {
         setLoading(true)
-        const flaskMessage = (filter ? (term + " " + item_number) : term)
+        const djangoMessage = (filter ? (term + " " + item_number) : term)
 
-        console.log("(cardlist.js) flask message is:", flaskMessage)
-        const sendFlaskMessage = { message: flaskMessage }
-
-
-        axios.post(url, sendFlaskMessage)
+        console.log("(cardlist.js) django message is:", djangoMessage)
+        axios.get('https://history-assistant-slack.ue.r.appspot.com/api/watson', {
+            params: {
+                message: djangoMessage
+            }
+        })
             .then((response) => setFlaskResponse(parseFlaskResponse(response.data)))
             .then(() => setLoading(false))
             .catch((error) => console.error(error))
