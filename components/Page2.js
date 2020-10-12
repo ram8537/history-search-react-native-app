@@ -9,12 +9,12 @@ import NoSearchTerms from './Page2/NoSearchTerms';
 import SearchBar from './Page2/SearchBar';
 import { useStateValue } from './State/StateProvider';
 
-const renderItems = (filter, term) => {
+const renderFilter = (filter, term) => {
+  console.log("(page2) useEffect on filter", filter)
   if (filter && term) {
     return (
       <View>
         <Filter />
-        <CardList data={term} />
       </View>
     )
   }
@@ -26,23 +26,43 @@ const renderItems = (filter, term) => {
       </View>
     )
   }
-  else { return (<NoSearchTerms />) }
+  if (!filter && term) {
+    console.log("no filter and term")
+  }
+  else {
+    return (
+      <NoSearchTerms />
+    )
+  }
+}
+
+const renderSearchResults = (term) => {
+  console.log("(page2) useEffect on term", term)
+  if (term) {
+    return (<CardList data={term} />)
+  }
 }
 
 export default function Page2() {
 
   const [{ term, filter, item_number }] = useStateValue();
-  const [items, setItems] = useState();
+  const [showFilter, setShowFilter] = useState();
+  const [searchResults, setSearchResults] = useState();
 
   useEffect(() => {
-    setItems(renderItems(filter, term))
-  }, [term || filter])
+    setShowFilter(renderFilter(filter, term))
+  }, [filter, term])
+
+  useEffect(() => {
+    setSearchResults(renderSearchResults(term))
+  }, [term])
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.container}>
         <SearchBar />
-{items}
+        {showFilter}
+        {searchResults}
       </View>
     </ScrollView>
   )
