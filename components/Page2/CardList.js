@@ -1,26 +1,45 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Linking, Text } from "react-native";
+import { Button, Icon, View } from 'native-base';
 import { useStateValue } from '../State/StateProvider';
 import CardComponent from './Card';
 
-function parseFlaskResponse(data) {
-    if (data.type == "basic_response") {
+
+function googleSearch(query) {
+    url = `https://www.google.com/search?q=${query}`
+    return (
+        <View style={{ flexDirection: "column", margin: 15 }}>
+            <Text style={{ color: "white", paddingBottom:10, }}>There were no results for your query: "{query}"</Text>
+            <Button style={{ backgroundColor: "#292929", paddingRight: 20, justifyContent:"center", alignItems:"center"}} onPress={() => { Linking.openURL(url) }}>
+                <Icon type="AntDesign" name='google' style={{ color: "#F780A9"}} />
+                <Text style={{ color: "white" }}>Google Search</Text>
+            </Button>
+        </View>
+    )
+}
+
+function parseFlaskResponse(django, error_message) {
+    if (django.type == "basic_response") {
         console.log("received basic response")
-        return <CardComponent text={data.message} />
+        return <CardComponent text={django.message} />
     }
-    else if (data.type == "filtered_response") {
+    else if (django.type == "filtered_response") {
         console.log("received filtered response")
-        const ScrollItems = data.message.map((item) =>
+        const ScrollItems = django.message.map((item) =>
             <CardComponent key={item.confidence_score} confidence_score={item.confidence_score} text={item.text} />);
         return (
             <ScrollView style={styles.container}>
                 {ScrollItems}
             </ScrollView>
         )
-    } else {
-        console.log(data.message);
-        return <CardComponent text={data.message} />
+    } else if (django.type == "error_message") {
+        console.log("received error message");
+        return (googleSearch(query = error_message))
+    }
+    else {
+        console.log(django.message);
+        return <CardComponent text={django.message} />
     }
 }
 
@@ -43,7 +62,7 @@ export default function CardList() {
                 message: djangoMessage
             }
         })
-            .then((response) => setFlaskResponse(parseFlaskResponse(response.data)))
+            .then((response) => setFlaskResponse(parseFlaskResponse(django = response.data, error_message = term)))
             .then(() => setLoading(false))
             .catch((error) => console.error(error))
     }, [term])
