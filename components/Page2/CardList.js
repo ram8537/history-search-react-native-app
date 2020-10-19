@@ -10,9 +10,9 @@ function googleSearch(query) {
     url = `https://www.google.com/search?q=${query}`
     return (
         <View style={{ flexDirection: "column", margin: 15 }}>
-            <Text style={{ color: "white", paddingBottom:10, }}>There were no results for your query: "{query}"</Text>
-            <Button style={{ backgroundColor: "#292929", paddingRight: 20, justifyContent:"center", alignItems:"center"}} onPress={() => { Linking.openURL(url) }}>
-                <Icon type="AntDesign" name='google' style={{ color: "#F780A9"}} />
+            <Text style={{ color: "white", paddingBottom: 10, }}>There were no results for your query: "{query}"</Text>
+            <Button style={{ backgroundColor: "#292929", paddingRight: 20, justifyContent: "center", alignItems: "center" }} onPress={() => { Linking.openURL(url) }}>
+                <Icon type="AntDesign" name='google' style={{ color: "#F780A9" }} />
                 <Text style={{ color: "white" }}>Google Search</Text>
             </Button>
         </View>
@@ -26,11 +26,14 @@ function parseFlaskResponse(django, error_message) {
     }
     else if (django.type == "filtered_response") {
         console.log("received filtered response")
+        console.log(django.message)
+
         const ScrollItems = django.message.map((item) =>
             <CardComponent key={item.confidence_score} confidence_score={item.confidence_score} text={item.text} />);
+
         return (
             <ScrollView style={styles.container}>
-                {ScrollItems}
+                {django.message.length != 0 ? ScrollItems : googleSearch(error_message) }
             </ScrollView>
         )
     } else if (django.type == "error_message") {
